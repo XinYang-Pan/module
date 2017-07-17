@@ -3,19 +3,11 @@ package io.github.xinyangpan.module.notification.bo;
 import java.util.Date;
 
 public class NotificationBo {
-	private long messageId;
 	private long targetId;
+	private long messageId;
 	private NotificationStatus notificationStatus;
 	private Date createDate;
 	private Date readDate;
-
-	public long getMessageId() {
-		return messageId;
-	}
-
-	public void setMessageId(long messageId) {
-		this.messageId = messageId;
-	}
 
 	public long getTargetId() {
 		return targetId;
@@ -23,6 +15,14 @@ public class NotificationBo {
 
 	public void setTargetId(long targetId) {
 		this.targetId = targetId;
+	}
+
+	public long getMessageId() {
+		return messageId;
+	}
+
+	public void setMessageId(long messageId) {
+		this.messageId = messageId;
 	}
 
 	public NotificationStatus getNotificationStatus() {

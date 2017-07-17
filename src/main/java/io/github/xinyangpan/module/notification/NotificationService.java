@@ -5,22 +5,30 @@ import java.util.List;
 import io.github.xinyangpan.module.notification.bo.MessageBo;
 import io.github.xinyangpan.module.notification.bo.NotificationBo;
 
-public interface NotificationService {
+public interface NotificationService<M extends MessageBo, N extends NotificationBo> {
 
-	void post(long targetId, MessageBo messageBo);
+	void post(long targetId, M messageBo);
 
-	void read(long targetId, long messageId);
+	void markRead(long targetId, long messageId);
 
-	void readAll(long targetId);
+	default void markReadAll(long targetId) {
+		List<N> notifications = this.listAllUnread(targetId);
+		for (N n : notifications) {
+			this.markRead(targetId, n.getMessageId());
+		}
+	}
 
 	void delete(long targetId, long messageId);
 
-	void deleteAll(long targetId);
+	default void deleteAll(long targetId) {
+		List<N> notifications = this.listAll(targetId);
+		for (N n : notifications) {
+			this.markRead(targetId, n.getMessageId());
+		}
+	}
 
-	void update(NotificationBo notificationBo);
+	List<N> listAllUnread(long targetId);
 
-	List<NotificationBo> listAllUnread(long targetId);
-	
-	List<NotificationBo> listAll(long targetId);
+	List<N> listAll(long targetId);
 
 }
