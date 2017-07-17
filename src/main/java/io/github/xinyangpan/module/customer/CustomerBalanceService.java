@@ -9,9 +9,26 @@ public interface CustomerBalanceService {
 
 	public void addBalanceAccount(long customerId, CurrencyCode currencyCode);
 
-	public void changeBalance(CustomerValuable customerValuable, BalanceAction balanceAction, String msg);
+	default void changeBalance(CustomerValuable customerValuable, BalanceAction balanceAction, String msg) {
+		CustomerBalance customerBalance = this.getBalanceInfo(customerValuable.getCustomerId(), customerValuable.getCurrencyCode());
+		switch (balanceAction) {
+		case FREEZE:
+			customerBalance.setFrozenBalance(customerBalance.getFrozenBalance().add(customerValuable.getBalance()));
+			break;
+		case CREDIT:
+			customerBalance.setBalance(customerBalance.getBalance().add(customerValuable.getBalance()));
+			break;
+		case DEBIT:
+			customerBalance.setBalance(customerBalance.getBalance().subtract(customerValuable.getBalance()));
+			break;
+		default:
+			throw new RuntimeException("No action define for "+ balanceAction);
+		}
+	}
 
-	public void freeze(CustomerValuable customerValuable);
+	default void freeze(CustomerValuable customerValuable) {
+		this.changeBalance(customerValuable, BalanceAction.FREEZE, "freeze balance");
+	}
 
 	default void transfer(CustomerValuable source, CustomerValuable dest) {
 		this.changeBalance(source, BalanceAction.DEBIT, "Transfer out");

@@ -67,7 +67,7 @@ public abstract class AbstractLoginService<T> implements CustomerLoginService<T>
 
 	private void validate(LoginVo loginVo) {
 		Assert.notNull(loginVo, "loginVo must not be null");
-		Assert.notNull(loginVo.getUsername(), "Username must not be null");
+		Assert.notNull(loginVo.getLogin(), "Username must not be null");
 		Assert.notNull(loginVo.getPassword(), "Password must not be null");
 	}
 

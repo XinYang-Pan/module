@@ -4,27 +4,27 @@ import javax.validation.constraints.NotNull;
 
 public class LoginVo {
 	@NotNull
-	private String username;
+	private String login;
 	@NotNull
 	private String password;
 
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("LoginVo [username=");
-		builder.append(username);
+		builder.append("LoginVo [login=");
+		builder.append(login);
 		builder.append(", password=");
 		builder.append(password);
 		builder.append("]");
 		return builder.toString();
 	}
 
-	public String getUsername() {
-		return username;
+	public String getLogin() {
+		return login;
 	}
 
-	public void setUsername(String userName) {
-		this.username = userName;
+	public void setLogin(String login) {
+		this.login = login;
 	}
 
 	public String getPassword() {

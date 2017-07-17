@@ -6,7 +6,7 @@ public class CustomerBalance {
 	private long customerId;
 	private CurrencyCode currencyCode;
 	private BigDecimal balance;
-	private BigDecimal freezingBalance;
+	private BigDecimal frozenBalance;
 
 	public long getCustomerId() {
 		return customerId;
@@ -32,12 +32,12 @@ public class CustomerBalance {
 		this.balance = balance;
 	}
 
-	public BigDecimal getFreezingBalance() {
-		return freezingBalance;
+	public BigDecimal getFrozenBalance() {
+		return frozenBalance;
 	}
 
-	public void setFreezingBalance(BigDecimal freezingBalance) {
-		this.freezingBalance = freezingBalance;
+	public void setFrozenBalance(BigDecimal frozenBalance) {
+		this.frozenBalance = frozenBalance;
 	}
 
 }
