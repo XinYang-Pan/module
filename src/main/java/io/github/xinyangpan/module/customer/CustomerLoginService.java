@@ -5,12 +5,14 @@ import io.github.xinyangpan.module.customer.bo.Login;
 
 public interface CustomerLoginService<T extends Customer> {
 
-	public T login(Login login);
+	T login(Login login);
 
-	public T loginByUsername(Login login);
+	T loginByUsername(Login login);
 
-	public T loginByEmail(Login login);
+	T loginByEmail(Login login);
 
-	public T loginByMobile(Login login);
-
+	T loginByMobile(Login login);
+	
+	boolean changePassword(String username, String oldRawPassword, String newRawPassword);
+	
 }

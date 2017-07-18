@@ -36,4 +36,15 @@ public class CustomerLoginServiceImpl extends AbstractLoginService<CustomerPo> {
 		return passwordEncoder;
 	}
 
+	@Override
+	public boolean changePassword(String username, String oldRawPassword, String newRawPassword) {
+		CustomerPo customerPo = this.loginByUsername(new Login(username, oldRawPassword));
+		if (customerPo != null) {
+			customerPo.setPassword(passwordEncoder.encode(newRawPassword));
+			customerDao.save(customerPo);
+			return true;
+		}
+		return false;
+	}
+
 }
