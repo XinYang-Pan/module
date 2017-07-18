@@ -1,6 +1,7 @@
 package io.github.xinyangpan.sample.customer;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import io.github.xinyangpan.module.customer.bo.Login;
@@ -12,20 +13,27 @@ import io.github.xinyangpan.sample.persistent.po.CustomerPo;
 public class CustomerLoginServiceImpl extends AbstractLoginService<CustomerPo> {
 	@Autowired
 	private CustomerDao customerDao;
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 
 	@Override
 	protected CustomerPo doLoginByEmail(Login login) {
-		return customerDao.findByEmailAndPassword(login.getLogin(), login.getPassword());
+		return customerDao.findByEmail(login.getLogin());
 	}
 
 	@Override
 	protected CustomerPo doLoginByMobile(Login login) {
-		return customerDao.findByMobileAndPassword(login.getLogin(), login.getPassword());
+		return customerDao.findByMobile(login.getLogin());
 	}
 
 	@Override
 	protected CustomerPo doLoginByUsername(Login login) {
-		return customerDao.findByUsernameAndPassword(login.getLogin(), login.getPassword());
+		return customerDao.findByUsername(login.getLogin());
+	}
+
+	@Override
+	protected PasswordEncoder getPasswordEncoder() {
+		return passwordEncoder;
 	}
 
 }

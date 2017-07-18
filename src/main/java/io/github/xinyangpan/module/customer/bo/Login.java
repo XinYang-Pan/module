@@ -6,14 +6,14 @@ public class Login {
 	@NotNull
 	private String login;
 	@NotNull
-	private String password;
+	private String rawPassword;
 
 	public Login() {
 	}
 
-	public Login(String login, String password) {
+	public Login(String login, String rawPassword) {
 		this.login = login;
-		this.password = password;
+		this.rawPassword = rawPassword;
 	}
 
 	@Override
@@ -21,8 +21,8 @@ public class Login {
 		StringBuilder builder = new StringBuilder();
 		builder.append("Login [login=");
 		builder.append(login);
-		builder.append(", password=");
-		builder.append(password);
+		builder.append(", rawPassword=");
+		builder.append(rawPassword);
 		builder.append("]");
 		return builder.toString();
 	}
@@ -35,12 +35,12 @@ public class Login {
 		this.login = login;
 	}
 
-	public String getPassword() {
-		return password;
+	public String getRawPassword() {
+		return rawPassword;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public void setRawPassword(String password) {
+		this.rawPassword = password;
 	}
-
+	
 }

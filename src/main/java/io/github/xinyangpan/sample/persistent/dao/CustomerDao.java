@@ -6,10 +6,10 @@ import io.github.xinyangpan.sample.persistent.po.CustomerPo;
 
 public interface CustomerDao extends PagingAndSortingRepository<CustomerPo, Long> {
 
-	CustomerPo findByEmailAndPassword(String email, String password);
+	CustomerPo findByEmail(String email);
 
-	CustomerPo findByMobileAndPassword(String mobile, String password);
+	CustomerPo findByMobile(String mobile);
 
-	CustomerPo findByUsernameAndPassword(String username, String password);
+	CustomerPo findByUsername(String username);
 
 }

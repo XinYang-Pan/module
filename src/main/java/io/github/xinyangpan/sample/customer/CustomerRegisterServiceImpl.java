@@ -1,6 +1,7 @@
 package io.github.xinyangpan.sample.customer;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import io.github.xinyangpan.module.customer.CustomerRegisterService;
@@ -11,9 +12,12 @@ import io.github.xinyangpan.sample.persistent.po.CustomerPo;
 public class CustomerRegisterServiceImpl implements CustomerRegisterService<CustomerPo> {
 	@Autowired
 	private CustomerDao customerDao;
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 
 	@Override
 	public CustomerPo register(CustomerPo customerInfo) {
+		customerInfo.setPassword(passwordEncoder.encode(customerInfo.getPassword()));
 		return customerDao.save(customerInfo);
 	}
 
