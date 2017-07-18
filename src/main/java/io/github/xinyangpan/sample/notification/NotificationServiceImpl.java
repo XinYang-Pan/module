@@ -57,6 +57,10 @@ public class NotificationServiceImpl implements NotificationService<MessagePo, N
 	@Override
 	public void delete(long targetId, long messageId) {
 		NotificationPo notification = notificationDao.findByTargetIdAndMessageId(targetId, messageId);
+		Assert.notNull(notification, "notification must not be null");
+		if (notification.getNotificationStatus() == NotificationStatus.DELETE) {
+			throw new NotificationIsAlreadyDeletedException();
+		}
 		notification.setNotificationStatus(NotificationStatus.DELETE);
 		notificationDao.save(notification);
 	}

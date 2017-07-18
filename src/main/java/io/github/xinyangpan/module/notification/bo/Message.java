@@ -21,7 +21,7 @@ public class Message {
 		this.topic = topic;
 	}
 
-	public String getContent() {
+	public String getContent() { 
 		return content;
 	}
 
