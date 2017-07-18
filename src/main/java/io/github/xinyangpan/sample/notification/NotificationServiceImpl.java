@@ -4,9 +4,12 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.Assert;
 
+import io.github.xinyangpan.module.common.exception.EnumValueNotSupportException;
 import io.github.xinyangpan.module.notification.NotificationService;
 import io.github.xinyangpan.module.notification.bo.NotificationStatus;
+import io.github.xinyangpan.module.notification.exception.NotificationIsAlreadyDeletedException;
 import io.github.xinyangpan.sample.persistent.dao.MessageDao;
 import io.github.xinyangpan.sample.persistent.dao.NotificationDao;
 import io.github.xinyangpan.sample.persistent.po.MessagePo;
@@ -34,9 +37,20 @@ public class NotificationServiceImpl implements NotificationService<MessagePo, N
 	@Override
 	public void markRead(long targetId, long messageId) {
 		NotificationPo notificationPo = notificationDao.findByTargetIdAndMessageId(targetId, messageId);
-		if (notificationPo.getNotificationStatus() == NotificationStatus.NEW) {
+		Assert.notNull(notificationPo, "notificationPo must not be null");
+		NotificationStatus notificationStatus = notificationPo.getNotificationStatus();
+		switch (notificationStatus) {
+		case NEW:
 			notificationPo.setNotificationStatus(NotificationStatus.READ);
 			notificationDao.save(notificationPo);
+			break;
+		case READ:
+			// do nothing for read
+			break;
+		case DELETE:
+			throw new NotificationIsAlreadyDeletedException();
+		default:
+			throw new EnumValueNotSupportException(NotificationStatus.class, notificationStatus);
 		}
 	}
 

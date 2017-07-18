@@ -8,8 +8,8 @@ import org.springframework.util.Assert;
 
 import io.github.xinyangpan.module.customer.CustomerLoginService;
 import io.github.xinyangpan.module.customer.bo.LoginMethod;
+import io.github.xinyangpan.module.customer.exception.WrongUsernameOrPasswordException;
 import io.github.xinyangpan.module.customer.bo.Login;
-import io.github.xinyangpan.module.customer.util.WrongUsernameOrPasswordException;
 
 public abstract class AbstractLoginService<T> implements CustomerLoginService<T> {
 	private static final Logger log = LoggerFactory.getLogger(AbstractLoginService.class);
