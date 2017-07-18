@@ -1,7 +1,7 @@
 package io.github.xinyangpan.sample.persistent.po;
 
-import io.github.xinyangpan.module.notification.bo.MessageBo;
+import io.github.xinyangpan.module.notification.bo.Message;
 
-public class MessagePo extends MessageBo {
+public class MessagePo extends Message {
 
 }

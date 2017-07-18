@@ -1,6 +1,6 @@
 package io.github.xinyangpan.module.customer.bo;
 
-public class CustomerBo {
+public class Customer {
 
 	private Long customerId;
 	private String username;
@@ -11,7 +11,7 @@ public class CustomerBo {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("CustomerBo [customerId=");
+		builder.append("Customer [customerId=");
 		builder.append(customerId);
 		builder.append(", username=");
 		builder.append(username);

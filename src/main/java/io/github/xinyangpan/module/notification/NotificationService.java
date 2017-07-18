@@ -2,10 +2,10 @@ package io.github.xinyangpan.module.notification;
 
 import java.util.List;
 
-import io.github.xinyangpan.module.notification.bo.MessageBo;
-import io.github.xinyangpan.module.notification.bo.NotificationBo;
+import io.github.xinyangpan.module.notification.bo.Message;
+import io.github.xinyangpan.module.notification.bo.Notification;
 
-public interface NotificationService<M extends MessageBo, N extends NotificationBo> {
+public interface NotificationService<M extends Message, N extends Notification> {
 
 	void post(long targetId, M messageBo);
 

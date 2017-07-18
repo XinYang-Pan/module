@@ -1,6 +1,6 @@
 package io.github.xinyangpan.module.notification.bo;
 
-public class MessageBo {
+public class Message {
 	private long messageId;
 	private String topic;
 	private String content;

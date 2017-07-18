@@ -2,7 +2,7 @@ package io.github.xinyangpan.module.customer.bo;
 
 import javax.validation.constraints.NotNull;
 
-public class LoginVo {
+public class Login {
 	@NotNull
 	private String login;
 	@NotNull
@@ -11,7 +11,7 @@ public class LoginVo {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("LoginVo [login=");
+		builder.append("Login [login=");
 		builder.append(login);
 		builder.append(", password=");
 		builder.append(password);

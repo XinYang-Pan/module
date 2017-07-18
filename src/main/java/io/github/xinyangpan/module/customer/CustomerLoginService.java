@@ -1,15 +1,15 @@
 package io.github.xinyangpan.module.customer;
 
-import io.github.xinyangpan.module.customer.bo.LoginVo;
+import io.github.xinyangpan.module.customer.bo.Login;
 
 public interface CustomerLoginService<T> {
 
-	public T login(LoginVo loginVo);
+	public T login(Login loginVo);
 
-	public T loginByUsername(LoginVo loginVo);
+	public T loginByUsername(Login loginVo);
 
-	public T loginByEmail(LoginVo loginVo);
+	public T loginByEmail(Login loginVo);
 
-	public T loginByMobile(LoginVo loginVo);
+	public T loginByMobile(Login loginVo);
 
 }

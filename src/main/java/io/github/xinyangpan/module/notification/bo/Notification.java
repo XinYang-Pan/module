@@ -2,7 +2,7 @@ package io.github.xinyangpan.module.notification.bo;
 
 import java.util.Date;
 
-public class NotificationBo {
+public class Notification {
 	private long targetId;
 	private long messageId;
 	private NotificationStatus notificationStatus;

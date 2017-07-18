@@ -8,14 +8,14 @@ import org.springframework.util.Assert;
 
 import io.github.xinyangpan.module.customer.CustomerLoginService;
 import io.github.xinyangpan.module.customer.bo.LoginMethod;
-import io.github.xinyangpan.module.customer.bo.LoginVo;
+import io.github.xinyangpan.module.customer.bo.Login;
 import io.github.xinyangpan.module.customer.util.WrongUsernameOrPasswordException;
 
 public abstract class AbstractLoginService<T> implements CustomerLoginService<T> {
 	private static final Logger log = LoggerFactory.getLogger(AbstractLoginService.class);
 
 	@Override
-	public T login(LoginVo loginVo) {
+	public T login(Login loginVo) {
 		// 
 		this.validate(loginVo);
 		// 
@@ -32,21 +32,21 @@ public abstract class AbstractLoginService<T> implements CustomerLoginService<T>
 	}
 
 	@Override
-	public T loginByEmail(LoginVo loginVo) {
+	public T loginByEmail(Login loginVo) {
 		return this.doLogin(loginVo, this::doLoginByEmail);
 	}
 
 	@Override
-	public T loginByMobile(LoginVo loginVo) {
+	public T loginByMobile(Login loginVo) {
 		return this.doLogin(loginVo, this::doLoginByMobile);
 	}
 
 	@Override
-	public T loginByUsername(LoginVo loginVo) {
+	public T loginByUsername(Login loginVo) {
 		return this.doLogin(loginVo, this::doLoginByUsername);
 	}
 
-	private T doLogin(LoginVo loginVo, Function<LoginVo, T> loginFunction) {
+	private T doLogin(Login loginVo, Function<Login, T> loginFunction) {
 		// 
 		this.validate(loginVo);
 		// 
@@ -59,13 +59,13 @@ public abstract class AbstractLoginService<T> implements CustomerLoginService<T>
 		}
 	}
 
-	protected abstract T doLoginByEmail(LoginVo loginVo);
+	protected abstract T doLoginByEmail(Login loginVo);
 
-	protected abstract T doLoginByMobile(LoginVo loginVo);
+	protected abstract T doLoginByMobile(Login loginVo);
 
-	protected abstract T doLoginByUsername(LoginVo loginVo);
+	protected abstract T doLoginByUsername(Login loginVo);
 
-	private void validate(LoginVo loginVo) {
+	private void validate(Login loginVo) {
 		Assert.notNull(loginVo, "loginVo must not be null");
 		Assert.notNull(loginVo.getLogin(), "Username must not be null");
 		Assert.notNull(loginVo.getPassword(), "Password must not be null");
