@@ -7,6 +7,6 @@ import io.github.xinyangpan.sample.persistent.po.CustomerBalancePo;
 
 public interface CustomerBalanceDao extends PagingAndSortingRepository<CustomerBalancePo, Long> {
 
-	CustomerBalancePo findCustomerIdAndCurrencyCode(long customerId, CurrencyCode currencyCode);
+	CustomerBalancePo findByCustomerIdAndCurrencyCode(long customerId, CurrencyCode currencyCode);
 
 }

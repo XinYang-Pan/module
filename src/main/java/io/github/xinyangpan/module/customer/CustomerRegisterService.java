@@ -2,7 +2,7 @@ package io.github.xinyangpan.module.customer;
 
 public interface CustomerRegisterService<T> {
 
-	public T register(T userInfo);
+	public T register(T customerInfo);
 
 	public boolean verifyMobile(String mobileVerificationCode);
 

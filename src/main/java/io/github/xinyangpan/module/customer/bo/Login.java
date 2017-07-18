@@ -8,6 +8,14 @@ public class Login {
 	@NotNull
 	private String password;
 
+	public Login() {
+	}
+
+	public Login(String login, String password) {
+		this.login = login;
+		this.password = password;
+	}
+
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();

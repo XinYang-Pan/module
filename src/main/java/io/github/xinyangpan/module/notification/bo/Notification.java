@@ -2,6 +2,9 @@ package io.github.xinyangpan.module.notification.bo;
 
 import java.util.Date;
 
+import javax.persistence.MappedSuperclass;
+
+@MappedSuperclass
 public class Notification {
 	private long targetId;
 	private long messageId;

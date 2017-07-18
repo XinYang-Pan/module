@@ -1,8 +1,16 @@
 package io.github.xinyangpan.sample.persistent.po;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class CustomerPo {
 
-	private Long customerId;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private long id;
 	private String username;
 	private String email;
 	private String mobile;
@@ -12,7 +20,7 @@ public class CustomerPo {
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
 		builder.append("CustomerBo [customerId=");
-		builder.append(customerId);
+		builder.append(id);
 		builder.append(", username=");
 		builder.append(username);
 		builder.append(", email=");
@@ -25,12 +33,12 @@ public class CustomerPo {
 		return builder.toString();
 	}
 
-	public Long getCustomerId() {
-		return customerId;
+	public long getId() {
+		return id;
 	}
 
-	public void setCustomerId(Long customerId) {
-		this.customerId = customerId;
+	public void setId(long id) {
+		this.id = id;
 	}
 
 	public String getUsername() {

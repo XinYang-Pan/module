@@ -2,6 +2,9 @@ package io.github.xinyangpan.module.customer.bo;
 
 import java.math.BigDecimal;
 
+import javax.persistence.MappedSuperclass;
+
+@MappedSuperclass
 public class CustomerBalance {
 	private long customerId;
 	private CurrencyCode currencyCode;

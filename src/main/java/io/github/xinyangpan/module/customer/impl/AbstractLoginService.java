@@ -15,17 +15,17 @@ public abstract class AbstractLoginService<T> implements CustomerLoginService<T>
 	private static final Logger log = LoggerFactory.getLogger(AbstractLoginService.class);
 
 	@Override
-	public T login(Login login) {
+	public T login(Login loginObj) {
 		// 
-		this.validate(login);
+		this.validate(loginObj);
 		// 
-		String password = login.getPassword();
-		if (LoginMethod.EMAIL.predicate(password)) {
-			return this.loginByEmail(login);
-		} else if (LoginMethod.MOBILE.predicate(password)) {
-			return this.loginByMobile(login);
-		} else if (LoginMethod.USERNAME.predicate(password)) {
-			return this.loginByUsername(login);
+		String login = loginObj.getLogin();
+		if (LoginMethod.EMAIL.predicate(login)) {
+			return this.loginByEmail(loginObj);
+		} else if (LoginMethod.MOBILE.predicate(login)) {
+			return this.loginByMobile(loginObj);
+		} else if (LoginMethod.USERNAME.predicate(login)) {
+			return this.loginByUsername(loginObj);
 		} else {
 			throw new RuntimeException("No login method found.");
 		}
