@@ -15,42 +15,42 @@ public abstract class AbstractLoginService<T> implements CustomerLoginService<T>
 	private static final Logger log = LoggerFactory.getLogger(AbstractLoginService.class);
 
 	@Override
-	public T login(Login loginVo) {
+	public T login(Login login) {
 		// 
-		this.validate(loginVo);
+		this.validate(login);
 		// 
-		String password = loginVo.getPassword();
+		String password = login.getPassword();
 		if (LoginMethod.EMAIL.predicate(password)) {
-			return this.loginByEmail(loginVo);
+			return this.loginByEmail(login);
 		} else if (LoginMethod.MOBILE.predicate(password)) {
-			return this.loginByMobile(loginVo);
+			return this.loginByMobile(login);
 		} else if (LoginMethod.USERNAME.predicate(password)) {
-			return this.loginByUsername(loginVo);
+			return this.loginByUsername(login);
 		} else {
 			throw new RuntimeException("No login method found.");
 		}
 	}
 
 	@Override
-	public T loginByEmail(Login loginVo) {
-		return this.doLogin(loginVo, this::doLoginByEmail);
+	public T loginByEmail(Login login) {
+		return this.doLogin(login, this::doLoginByEmail);
 	}
 
 	@Override
-	public T loginByMobile(Login loginVo) {
-		return this.doLogin(loginVo, this::doLoginByMobile);
+	public T loginByMobile(Login login) {
+		return this.doLogin(login, this::doLoginByMobile);
 	}
 
 	@Override
-	public T loginByUsername(Login loginVo) {
-		return this.doLogin(loginVo, this::doLoginByUsername);
+	public T loginByUsername(Login login) {
+		return this.doLogin(login, this::doLoginByUsername);
 	}
 
-	private T doLogin(Login loginVo, Function<Login, T> loginFunction) {
+	private T doLogin(Login login, Function<Login, T> loginFunction) {
 		// 
-		this.validate(loginVo);
+		this.validate(login);
 		// 
-		T t = loginFunction.apply(loginVo);
+		T t = loginFunction.apply(login);
 		if (t != null) {
 			log.info("login user - {}", t);
 			return t;
@@ -59,16 +59,16 @@ public abstract class AbstractLoginService<T> implements CustomerLoginService<T>
 		}
 	}
 
-	protected abstract T doLoginByEmail(Login loginVo);
+	protected abstract T doLoginByEmail(Login login);
 
-	protected abstract T doLoginByMobile(Login loginVo);
+	protected abstract T doLoginByMobile(Login login);
 
-	protected abstract T doLoginByUsername(Login loginVo);
+	protected abstract T doLoginByUsername(Login login);
 
-	private void validate(Login loginVo) {
-		Assert.notNull(loginVo, "loginVo must not be null");
-		Assert.notNull(loginVo.getLogin(), "Username must not be null");
-		Assert.notNull(loginVo.getPassword(), "Password must not be null");
+	private void validate(Login login) {
+		Assert.notNull(login, "loginVo must not be null");
+		Assert.notNull(login.getLogin(), "Username must not be null");
+		Assert.notNull(login.getPassword(), "Password must not be null");
 	}
 
 }

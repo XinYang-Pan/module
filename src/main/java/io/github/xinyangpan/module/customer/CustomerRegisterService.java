@@ -12,6 +12,6 @@ public interface CustomerRegisterService<T> {
 
 	public void sendVerificationEmail(String email);
 	
-	public void setAntiPhishingCode(String antiPhishing);
+	public void saveAntiPhishingCode(String antiPhishing);
 
 }

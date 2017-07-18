@@ -14,18 +14,18 @@ public class CustomerLoginServiceImpl extends AbstractLoginService<CustomerPo> {
 	private CustomerDao customerDao;
 
 	@Override
-	protected CustomerPo doLoginByEmail(Login loginVo) {
-		return customerDao.findByEmailAndPassword(loginVo.getLogin(), loginVo.getPassword());
+	protected CustomerPo doLoginByEmail(Login login) {
+		return customerDao.findByEmailAndPassword(login.getLogin(), login.getPassword());
 	}
 
 	@Override
-	protected CustomerPo doLoginByMobile(Login loginVo) {
-		return customerDao.findByMobileAndPassword(loginVo.getLogin(), loginVo.getPassword());
+	protected CustomerPo doLoginByMobile(Login login) {
+		return customerDao.findByMobileAndPassword(login.getLogin(), login.getPassword());
 	}
 
 	@Override
-	protected CustomerPo doLoginByUsername(Login loginVo) {
-		return customerDao.findByUsernameAndPassword(loginVo.getLogin(), loginVo.getPassword());
+	protected CustomerPo doLoginByUsername(Login login) {
+		return customerDao.findByUsernameAndPassword(login.getLogin(), login.getPassword());
 	}
 
 }

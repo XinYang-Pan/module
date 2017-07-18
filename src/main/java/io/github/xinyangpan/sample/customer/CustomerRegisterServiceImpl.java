@@ -27,7 +27,7 @@ public class CustomerRegisterServiceImpl implements CustomerRegisterService<Cust
 
 	@Override
 	public boolean verifyEmail(String mobileVerificationCode) {
-		return false;
+		return true;
 	}
 
 	@Override
@@ -36,7 +36,7 @@ public class CustomerRegisterServiceImpl implements CustomerRegisterService<Cust
 	}
 
 	@Override
-	public void setAntiPhishingCode(String antiPhishing) {
+	public void saveAntiPhishingCode(String antiPhishing) {
 
 	}
 
