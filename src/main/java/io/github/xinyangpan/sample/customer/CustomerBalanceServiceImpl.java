@@ -1,18 +1,18 @@
 package io.github.xinyangpan.sample.customer;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import io.github.xinyangpan.module.customer.CustomerBalanceService;
 import io.github.xinyangpan.module.customer.bo.CurrencyCode;
-import io.github.xinyangpan.module.customer.bo.CustomerBalance;
 import io.github.xinyangpan.sample.persistent.dao.CustomerBalanceDao;
 import io.github.xinyangpan.sample.persistent.po.CustomerBalancePo;
 
 @Service
-public class CustomerBalanceServiceImpl implements CustomerBalanceService {
+public class CustomerBalanceServiceImpl implements CustomerBalanceService<CustomerBalancePo> {
 	@Autowired
 	private CustomerBalanceDao customerBalanceDao;
 
@@ -27,8 +27,13 @@ public class CustomerBalanceServiceImpl implements CustomerBalanceService {
 	}
 
 	@Override
-	public CustomerBalance getBalanceInfo(long customerId, CurrencyCode currencyCode) {
+	public CustomerBalancePo getBalanceInfo(long customerId, CurrencyCode currencyCode) {
 		return customerBalanceDao.findByCustomerIdAndCurrencyCode(customerId, currencyCode);
 	}
-
+	
+	@Override
+	public List<CustomerBalancePo> getAllBalanceInfos(long customerId) {
+		return customerBalanceDao.findByCustomerId(customerId);
+	}
+	
 }

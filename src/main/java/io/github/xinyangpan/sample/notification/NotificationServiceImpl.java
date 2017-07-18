@@ -25,10 +25,10 @@ public class NotificationServiceImpl implements NotificationService<MessagePo, N
 	private NotificationDao notificationDao;
 
 	@Override
-	public void post(long targetId, MessagePo messagePo) {
-		messagePo = messageDao.save(messagePo);
+	public void post(long targetId, MessagePo message) {
+		message = messageDao.save(message);
 		NotificationPo notificationPo = new NotificationPo();
-		notificationPo.setMessageId(messagePo.getId());
+		notificationPo.setMessageId(message.getId());
 		notificationPo.setTargetId(targetId);
 		notificationPo.setNotificationStatus(NotificationStatus.NEW);
 		notificationPo.setCreateDate(new Date());

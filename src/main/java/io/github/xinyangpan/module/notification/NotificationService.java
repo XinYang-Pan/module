@@ -7,7 +7,7 @@ import io.github.xinyangpan.module.notification.bo.Notification;
 
 public interface NotificationService<M extends Message, N extends Notification> {
 
-	void post(long targetId, M messageBo);
+	void post(long targetId, M message);
 
 	void markRead(long targetId, long messageId);
 

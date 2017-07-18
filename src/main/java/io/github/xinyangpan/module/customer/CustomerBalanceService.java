@@ -1,16 +1,18 @@
 package io.github.xinyangpan.module.customer;
 
+import java.util.List;
+
 import io.github.xinyangpan.module.customer.bo.BalanceAction;
 import io.github.xinyangpan.module.customer.bo.CurrencyCode;
 import io.github.xinyangpan.module.customer.bo.CustomerBalance;
 import io.github.xinyangpan.module.customer.bo.CustomerValuable;
 
-public interface CustomerBalanceService {
+public interface CustomerBalanceService<B extends CustomerBalance> {
 
 	public void addBalanceAccount(long customerId, CurrencyCode currencyCode);
 
 	default void changeBalance(CustomerValuable customerValuable, BalanceAction balanceAction, String msg) {
-		CustomerBalance customerBalance = this.getBalanceInfo(customerValuable.getCustomerId(), customerValuable.getCurrencyCode());
+		B customerBalance = this.getBalanceInfo(customerValuable.getCustomerId(), customerValuable.getCurrencyCode());
 		switch (balanceAction) {
 		case FREEZE:
 			customerBalance.setFrozenBalance(customerBalance.getFrozenBalance().add(customerValuable.getBalance()));
@@ -40,6 +42,8 @@ public interface CustomerBalanceService {
 		this.changeBalance(transactionFee, BalanceAction.DEBIT, "Transaction fee");
 	}
 
-	public CustomerBalance getBalanceInfo(long customerId, CurrencyCode currencyCode);
+	public B getBalanceInfo(long customerId, CurrencyCode currencyCode);
+
+	public List<B> getAllBalanceInfos(long customerId);
 
 }
