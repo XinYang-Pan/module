@@ -2,16 +2,16 @@ package io.github.xinyangpan.module.customer.bo;
 
 import java.math.BigDecimal;
 
-public class CustomerValuable {
-	private long customerId;
+public class CustomerValuable<I> {
+	private I customerId;
 	private CurrencyCode currencyCode;
 	private BigDecimal amount;
 
-	public long getCustomerId() {
+	public I getCustomerId() {
 		return customerId;
 	}
 
-	public void setCustomerId(long customerId) {
+	public void setCustomerId(I customerId) {
 		this.customerId = customerId;
 	}
 

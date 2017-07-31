@@ -1,4 +1,4 @@
-package io.github.xinyangpan.module.customer.bo;
+package io.github.xinyangpan.module.customer.function;
 
 public interface ReadWriteEmailVerified {
 

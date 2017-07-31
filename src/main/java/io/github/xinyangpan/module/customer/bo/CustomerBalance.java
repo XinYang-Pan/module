@@ -4,43 +4,21 @@ import java.math.BigDecimal;
 
 import javax.persistence.MappedSuperclass;
 
+import io.github.xinyangpan.module.customer.function.ReadWriteCustomerId;
+
 @MappedSuperclass
-public class CustomerBalance {
-	private long customerId;
-	private CurrencyCode currencyCode;
-	private BigDecimal balance;
-	private BigDecimal frozenBalance;
+public interface CustomerBalance<I> extends ReadWriteCustomerId<I> {
 
-	public long getCustomerId() {
-		return customerId;
-	}
+	public CurrencyCode getCurrencyCode();
 
-	public void setCustomerId(long customerId) {
-		this.customerId = customerId;
-	}
+	public void setCurrencyCode(CurrencyCode currencyCode);
 
-	public CurrencyCode getCurrencyCode() {
-		return currencyCode;
-	}
+	public BigDecimal getBalance();
 
-	public void setCurrencyCode(CurrencyCode currencyCode) {
-		this.currencyCode = currencyCode;
-	}
+	public void setBalance(BigDecimal balance);
 
-	public BigDecimal getBalance() {
-		return balance;
-	}
+	public BigDecimal getFrozenBalance();
 
-	public void setBalance(BigDecimal balance) {
-		this.balance = balance;
-	}
-
-	public BigDecimal getFrozenBalance() {
-		return frozenBalance;
-	}
-
-	public void setFrozenBalance(BigDecimal frozenBalance) {
-		this.frozenBalance = frozenBalance;
-	}
+	public void setFrozenBalance(BigDecimal frozenBalance);
 
 }

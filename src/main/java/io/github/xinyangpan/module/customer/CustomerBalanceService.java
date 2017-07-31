@@ -7,11 +7,11 @@ import io.github.xinyangpan.module.customer.bo.CurrencyCode;
 import io.github.xinyangpan.module.customer.bo.CustomerBalance;
 import io.github.xinyangpan.module.customer.bo.CustomerValuable;
 
-public interface CustomerBalanceService<B extends CustomerBalance> {
+public interface CustomerBalanceService<I, B extends CustomerBalance<I>> {
 
-	public void addBalanceAccount(long customerId, CurrencyCode currencyCode);
+	public void addBalanceAccount(I customerId, CurrencyCode currencyCode);
 
-	default void changeBalance(CustomerValuable customerValuable, BalanceAction balanceAction, String msg) {
+	default void changeBalance(CustomerValuable<I> customerValuable, BalanceAction balanceAction, String msg) {
 		B customerBalance = this.getBalanceInfo(customerValuable.getCustomerId(), customerValuable.getCurrencyCode());
 		switch (balanceAction) {
 		case FREEZE:
@@ -28,22 +28,22 @@ public interface CustomerBalanceService<B extends CustomerBalance> {
 		}
 	}
 
-	default void freeze(CustomerValuable customerValuable) {
+	default void freeze(CustomerValuable<I> customerValuable) {
 		this.changeBalance(customerValuable, BalanceAction.FREEZE, "freeze balance");
 	}
 
-	default void transfer(CustomerValuable source, CustomerValuable dest) {
+	default void transfer(CustomerValuable<I> source, CustomerValuable<I> dest) {
 		this.changeBalance(source, BalanceAction.DEBIT, "Transfer out");
 		this.changeBalance(dest, BalanceAction.CREDIT, "Transfer in");
 	}
 
-	default void exchange(CustomerValuable source, CustomerValuable dest, CustomerValuable transactionFee) {
+	default void exchange(CustomerValuable<I> source, CustomerValuable<I> dest, CustomerValuable<I> transactionFee) {
 		this.transfer(source, dest);
 		this.changeBalance(transactionFee, BalanceAction.DEBIT, "Transaction fee");
 	}
 
-	public B getBalanceInfo(long customerId, CurrencyCode currencyCode);
+	public B getBalanceInfo(I customerId, CurrencyCode currencyCode);
 
-	public List<B> getAllBalanceInfos(long customerId);
+	public List<B> getAllBalanceInfos(I customerId);
 
 }
