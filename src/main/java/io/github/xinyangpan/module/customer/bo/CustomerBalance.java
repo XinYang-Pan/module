@@ -2,11 +2,8 @@ package io.github.xinyangpan.module.customer.bo;
 
 import java.math.BigDecimal;
 
-import javax.persistence.MappedSuperclass;
-
 import io.github.xinyangpan.module.customer.function.ReadWriteCustomerId;
 
-@MappedSuperclass
 public interface CustomerBalance<I> extends ReadWriteCustomerId<I> {
 
 	public CurrencyCode getCurrencyCode();
