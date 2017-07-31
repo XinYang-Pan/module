@@ -3,6 +3,12 @@ package io.github.xinyangpan.module.customer;
 public interface CustomerRegisterService<T> {
 
 	public T register(T customerInfo);
+	
+	public boolean validateUsername(String username);
+	
+	public boolean validateEmail(String email);
+	
+	public boolean validateMobile(String mobile);
 
 	public boolean verifyMobile(String mobileVerificationCode);
 
