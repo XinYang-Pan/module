@@ -2,54 +2,26 @@ package io.github.xinyangpan.module.notification.bo;
 
 import java.util.Date;
 
-import javax.persistence.MappedSuperclass;
+public interface Notification<TID, MID> {
 
-@MappedSuperclass
-public class Notification {
-	private long targetId;
-	private long messageId;
-	private NotificationStatus notificationStatus;
-	private Date createDate;
-	private Date readDate;
+	public TID getTargetId();
 
-	public long getTargetId() {
-		return targetId;
-	}
+	public void setTargetId(TID targetId);
 
-	public void setTargetId(long targetId) {
-		this.targetId = targetId;
-	}
+	public MID getMessageId();
 
-	public long getMessageId() {
-		return messageId;
-	}
+	public void setMessageId(MID messageId);
 
-	public void setMessageId(long messageId) {
-		this.messageId = messageId;
-	}
+	public NotificationStatus getNotificationStatus();
 
-	public NotificationStatus getNotificationStatus() {
-		return notificationStatus;
-	}
+	public void setNotificationStatus(NotificationStatus notificationStatus);
 
-	public void setNotificationStatus(NotificationStatus notificationStatus) {
-		this.notificationStatus = notificationStatus;
-	}
+	public Date getCreateDate();
 
-	public Date getCreateDate() {
-		return createDate;
-	}
+	public void setCreateDate(Date createDate);
 
-	public void setCreateDate(Date createDate) {
-		this.createDate = createDate;
-	}
+	public Date getReadDate();
 
-	public Date getReadDate() {
-		return readDate;
-	}
-
-	public void setReadDate(Date readDate) {
-		this.readDate = readDate;
-	}
+	public void setReadDate(Date readDate);
 
 }

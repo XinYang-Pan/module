@@ -1,41 +1,15 @@
 package io.github.xinyangpan.module.notification.bo;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
+import io.github.xinyangpan.module.common.function.ReadWriteId;
 
-@MappedSuperclass
-public class Message {
+public interface Message<I> extends ReadWriteId<I> {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
-	private String topic;
-	private String content;
+	public String getTopic();
 
-	public long getId() {
-		return id;
-	}
+	public void setTopic(String topic);
 
-	public void setId(long id) {
-		this.id = id;
-	}
+	public String getContent();
 
-	public String getTopic() {
-		return topic;
-	}
-
-	public void setTopic(String topic) {
-		this.topic = topic;
-	}
-
-	public String getContent() {
-		return content;
-	}
-
-	public void setContent(String content) {
-		this.content = content;
-	}
+	public void setContent(String content);
 
 }
